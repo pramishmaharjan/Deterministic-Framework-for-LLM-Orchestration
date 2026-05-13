@@ -8,16 +8,15 @@ def main():
     # Python check
     print("[1/5] Checking Python...")
     # Dependencies
-    print("[2/5] Installing dependencies...")
+    print("[2/ la 5] Installing dependencies...")
     subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
     # Brain structure
-    print("[3/5] Initializing local Brain structure...")
-    default_path = Path.home() / "SurgicalBrain" / "Work"
-    default_path.mkdir(parents=True, exist_ok=True)
-    (default_path / "nodes").mkdir(exist_ok=True)
-    (default_path / "memory").mkdir(exist_ok=True)
+    print("[3/ la 5] Initializing dynamic Brain structure...")
+    from core.brain_manager import BrainManager
+    brain_path = BrainManager.initialize_brain_structure()
+    print(f"Brain initialized at: {brain_path}")
     # Environment
-    print("[4/5] Configuring environment...")
+    print("[4/ la 5] Configuring environment...")
     if not Path(".env").exists():
         import shutil
         shutil.copy(".env.example", ".env")

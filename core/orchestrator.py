@@ -1,7 +1,6 @@
 from typing import Any, Dict, List
 import os
-from .router import Router
-from .sovereign import SovereignValidator
+from .brain_manager import BrainManager
 
 class Orchestrator:
     """
@@ -11,7 +10,7 @@ class Orchestrator:
         self.router = router
         self.validator = validator
         self.nodes = {}
-        self.brain_root = os.getenv("BRAIN_ROOT_PATH", "C:/SurgicalBrain/Work")
+        self.brain_root = BrainManager.get_brain_root()
 
     def register_node(self, name: str, node_instance: Any):
         self.nodes[name] = node_instance
