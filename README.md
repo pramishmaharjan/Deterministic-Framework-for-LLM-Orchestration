@@ -55,7 +55,11 @@ python scripts/setup_env.py
 ```
 
 ### 2. Configuration
-Edit the generated `.env` file to include your API keys and define your `BRAIN_ROOT_PATH`.
+The framework is designed for zero-config startup. On the first run, the system will:
+1. Automatically create a local `config/` directory with sample routing and sovereign templates.
+2. Initialize a "Brain Root" (external data store) in your home directory or `D:/` drive (Windows).
+
+If you wish to use a custom location for your brain data, edit the generated `.env` file and define your `BRAIN_ROOT_PATH`.
 
 ### 3. Run Proof of Concept
 ```bash
