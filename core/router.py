@@ -23,6 +23,15 @@ class Router:
 
     def classify(self, query: str) -> str:
         query_lower = query.lower()
+
+        # 1. Check for dynamic domain matches from the graph
+        routes = self.graph.get("routes", {})
+        for domain in routes.keys():
+            if domain != "L1" and domain != "L2" and domain != "L3" and domain != "L4":
+                if domain.lower() in query_lower:
+                    return domain
+
+        # 2. Fallback to the 4-Tier Escalation Ladder
         if any(word in query_lower for word in ["what is", "define", "quick check"]):
             return "L1"
         if any(word in query_lower for word in ["find route", "map", "where is"]):
@@ -37,9 +46,13 @@ class Router:
 
         # Query the dynamic graph instead of hardcoded dict
         routes = self.graph.get("routes", {})
-        route = routes.get(tier)
+        route_data = routes.get(tier)
 
-        if not route:
+        if not route_data:
             raise RouteMissException(f"No route found for tier {tier}")
 
-        return route
+        # Handle both simple list routes and extended sovereign route dicts
+        if isinstance(route_data, dict):
+            return route_data.get("path", [])
+
+        return route_data
