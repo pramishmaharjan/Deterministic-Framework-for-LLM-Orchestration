@@ -16,12 +16,27 @@ def boot_framework():
     config_dir.mkdir(parents=True, exist_ok=True)
     print(f"[Boot] Config directory verified: {config_dir}")
 
-    # 2. Populate Default Routing Graph (if missing)
+    # 2. Populate Default Routing Graph (if missing or outdated)
     graph_file = config_dir / "graph.json"
-    if not graph_file.exists():
-        print("[Boot] Creating default routing graph...")
+    needs_update = not graph_file.exists()
+
+    if graph_file.exists():
+        try:
+            with open(graph_file, 'r') as f:
+                current_graph = json.load(f)
+                # Check if it's using the new Sovereign format (routes should be dicts, not lists)
+                routes = current_graph.get("routes", {})
+                if routes:
+                    first_route = next(iter(routes.values()))
+                    if not isinstance(first_route, dict):
+                        needs_update = True
+        except Exception:
+            needs_update = True
+
+    if needs_update:
+        print("[Boot] Creating/Updating default routing graph to latest version...")
         sample_graph = {
-            "version": "1.0",
+            "version": "1.1",
             "routes": {
                 "L1": {"path": ["LiteNode"], "sovereign": True},
                 "L2": {"path": ["IndexNode", "LiteNode"], "sovereign": True},
