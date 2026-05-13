@@ -28,7 +28,9 @@ class Router:
         routes = self.graph.get("routes", {})
         for domain in routes.keys():
             if domain != "L1" and domain != "L2" and domain != "L3" and domain != "L4":
-                if domain.lower() in query_lower:
+                # Normalize domain (replace underscores with spaces) for matching
+                normalized_domain = domain.replace("_", " ").lower()
+                if normalized_domain in query_lower:
                     return domain
 
         # 2. Fallback to the 4-Tier Escalation Ladder

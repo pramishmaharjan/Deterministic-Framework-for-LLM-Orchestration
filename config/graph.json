@@ -1,21 +1,41 @@
 {
+    "version": "1.1",
     "routes": {
-        "data_pipeline": ["ExtractionNode", "CleaningNode", "VerificationNode", "SynthesisNode"],
-        "quick_query": ["LiteNode"],
-        "knowledge_retrieval": ["IndexNode", "LiteNode"],
-        "sql_optimization": ["CleaningNode", "VerificationNode"]
+        "L1": {
+            "path": [
+                "LiteNode"
+            ],
+            "sovereign": true
+        },
+        "L2": {
+            "path": [
+                "IndexNode",
+                "LiteNode"
+            ],
+            "sovereign": true
+        },
+        "L3": {
+            "path": [
+                "ExtractionNode",
+                "CleaningNode",
+                "VerificationNode"
+            ],
+            "sovereign": false
+        },
+        "L4": {
+            "path": [
+                "ExtractionNode",
+                "CleaningNode",
+                "VerificationNode",
+                "SynthesisNode"
+            ],
+            "sovereign": false
+        },
+        "quantum_physics": [
+            "ExtractionNode",
+            "CleaningNode",
+            "VerificationNode"
+        ]
     },
-    "nodes": {
-        "ExtractionNode": {"type": "extraction", "layer": "L3", "tool": "langextract"},
-        "CleaningNode": {"type": "data", "layer": "L3", "tool": "polars"},
-        "VerificationNode": {"type": "verification", "layer": "L3", "tool": "sqlglot"},
-        "SynthesisNode": {"type": "orchestration", "layer": "L4", "tool": "ruflo"},
-        "LiteNode": {"type": "lite", "layer": "L1", "tool": "internal"},
-        "IndexNode": {"type": "index", "layer": "L2", "tool": "internal"}
-    },
-    "metadata": {
-        "version": "1.0.0",
-        "description": "Surgical Web Routing Map",
-        "author": "pramishmaharjan"
-    }
+    "description": "Deterministic mapping of request tiers to functional nodes."
 }

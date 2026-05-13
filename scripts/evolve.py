@@ -31,7 +31,7 @@ def translate_to_routes(clusters, current_graph):
     Ensures Sovereign routes are not overwritten.
     """
     print("[Evolve] Translating clusters to deterministic routes...")
-    updated_routes = current_graph.get("routes", {})
+    updated_routes = current_graph.get("routes", {}).copy()
 
     for domain, info in clusters.items():
         # Check if this domain already has a route
