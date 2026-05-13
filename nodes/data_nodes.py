@@ -1,6 +1,6 @@
 import polars as pl
 import sqlglot
-from ..core.base_node import BaseNode
+from core.base_node import BaseNode
 from typing import Any, Dict
 
 class ExtractionNode(BaseNode):
