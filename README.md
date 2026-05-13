@@ -1,5 +1,15 @@
 # 🧠 Surgical Brain OS: A Deterministic Framework for LLM Orchestration
 
+## 🛠️ Prerequisites
+Before running this framework, ensure you have the following installed on your system:
+- [ ] **Python 3.10+** (Recommended: Anaconda)
+- [ ] **Ollama** (For local LLM execution)
+- [ ] **Obsidian** (For managing your Brain's memory and kernels)
+- [ ] **Claude Code CLI** (To interact with the framework)
+- [ ] **Node.js** (For specific tool extensions)
+
+---
+
 ## 🌌 The Vision: From Probabilistic Prompting to Deterministic Routing
 
 Most modern AI agents operate on **Probabilistic Prompting**. They "search" for information, "guess" the best tool, and "hope" the LLM follows the instructions. This leads to **Cognitive Drift**, **Token Bloat**, and **Hallucinations**.
