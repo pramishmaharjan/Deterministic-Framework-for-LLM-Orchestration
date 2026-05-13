@@ -1,7 +1,11 @@
-# Required for the Surgical Brain OS Skeleton
+# Required for the Surgical Brain OS Full Distribution
 polars>=1.0.0
 sqlglot>=20.0.0
-# Note: These are wrappers; actual implementations would require the full tool suite
-# langextract
-# ruflo
-# graphify
+sqlfluff>=3.0.0
+python-dotenv
+pathlib
+# Orchestration & Graphing
+langgraph
+langchain-core
+# Note: langstruct is typically handled via specialized internal SDKs
+# or specific GitHub installs. We include the base requirements here.
