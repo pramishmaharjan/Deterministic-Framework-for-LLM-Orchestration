@@ -23,10 +23,10 @@ def boot_framework():
         sample_graph = {
             "version": "1.0",
             "routes": {
-                "L1": ["LiteNode"],
-                "L2": ["IndexNode", "LiteNode"],
-                "L3": ["ExtractionNode", "CleaningNode", "VerificationNode"],
-                "L4": ["ExtractionNode", "CleaningNode", "VerificationNode", "SynthesisNode"]
+                "L1": {"path": ["LiteNode"], "sovereign": True},
+                "L2": {"path": ["IndexNode", "LiteNode"], "sovereign": True},
+                "L3": {"path": ["ExtractionNode", "CleaningNode", "VerificationNode"], "sovereign": False},
+                "L4": {"path": ["ExtractionNode", "CleaningNode", "VerificationNode", "SynthesisNode"], "sovereign": False}
             },
             "description": "Deterministic mapping of request tiers to functional nodes."
         }

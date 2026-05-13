@@ -2,6 +2,10 @@ from typing import Any, Dict, List, Optional
 from pathlib import Path
 import json
 
+class RouteMissException(Exception):
+    """Raised when the Router cannot find a valid path for the given query."""
+    pass
+
 class Router:
     """
     Deterministic Router implementing the 4-Tier Escalation Ladder.
@@ -30,10 +34,12 @@ class Router:
     def get_route(self, query: str) -> List[str]:
         tier = self.classify(query)
         print(f"[Router] Request classified as {tier}")
-        routes = {
-            "L1": ["LiteNode"],
-            "L2": ["IndexNode", "LiteNode"],
-            "L3": ["ExtractionNode", "CleaningNode", "VerificationNode"],
-            "L4": ["ExtractionNode", "CleaningNode", "VerificationNode", "SynthesisNode"]
-        }
-        return routes.get(tier, ["LiteNode"])
+
+        # Query the dynamic graph instead of hardcoded dict
+        routes = self.graph.get("routes", {})
+        route = routes.get(tier)
+
+        if not route:
+            raise RouteMissException(f"No route found for tier {tier}")
+
+        return route
