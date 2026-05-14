@@ -1,15 +1,5 @@
 # 🧠 Surgical Brain OS: A Deterministic Framework for LLM Orchestration
 
-## 🛠️ Prerequisites
-Before running this framework, ensure you have the following installed on your system:
-- [ ] **Python 3.10+** (Recommended: Anaconda)
-- [ ] **Ollama** (For local LLM execution)
-- [ ] **Obsidian** (For managing your Brain's memory and kernels)
-- [ ] **Claude Code CLI** (To interact with the framework)
-- [ ] **Node.js** (For specific tool extensions)
-
----
-
 ## 🌌 The Vision: From Probabilistic Prompting to Deterministic Routing
 
 Most modern AI agents operate on **Probabilistic Prompting**. They "search" for information, "guess" the best tool, and "hope" the LLM follows the instructions. This leads to **Cognitive Drift**, **Token Bloat**, and **Hallucinations**.
@@ -38,6 +28,46 @@ For high-complexity tasks. The system executes a multi-node pipeline and perform
 
 ---
 
+## 🛠️ Setup & Installation
+
+### 1. System Prerequisites
+Ensure the following are installed before proceeding:
+- [ ] **Python 3.10+** (Anaconda recommended)
+- [ ] **Ollama** (For local LLM execution)
+- [ ] **Obsidian** (For managing your Brain's memory and kernels)
+- [ ] **Claude Code CLI** (The primary interface for framework orchestration)
+- [ ] **Node.js** (Required for tool extensions)
+
+### 2. Deployment Options
+
+#### Option A: Via Claude Code (Recommended)
+If you are using the Claude Code CLI, you can initialize this framework by simply pasting the repository URL into the prompt:
+```bash
+# Example
+claude "https://github.com/pramishmaharjan/Deterministic-Framework-for-LLM-Orchestration"
+```
+Claude Code will analyze the structure, read this README, and can guide you through the setup steps automatically.
+
+#### Option B: Manual Installation
+```bash
+# Clone the repository
+git clone https://github.com/pramishmaharjan/Deterministic-Framework-for-LLM-Orchestration.git
+cd Deterministic-Framework-for-LLM-Orchestration
+
+# Run the Auto-Provisioning Setup
+python scripts/setup_env.py
+```
+
+### 3. Zero-Config Auto-Provisioning
+The `scripts/setup_env.py` script is designed for a seamless "One-Click" experience. Upon execution, the system will:
+1. **Install Dependencies**: Automatically install all required libraries from `requirements.txt`.
+2. **Configure Environment**: Create a `.env` file from the template.
+3. **Provision the Brain**: Automatically detect and create the **Surgical Brain Root directory** (e.g., `C:/SurgicalBrain/Work` on Windows) and generate the entire required directory skeleton (`/nodes`, `/memory`, `/kernels`, `/weights`).
+
+**You do not need to manually create any folders; the system builds its own infrastructure on first run.**
+
+---
+
 ## 🕸️ The Surgical Web & Knowledge Graphing
 
 Traditional RAG retrieves *documents*. The Surgical Web retrieves **Routes**.
@@ -55,31 +85,11 @@ No output is delivered to the user until the `SovereignValidator` confirms that 
 
 ---
 
-## 🛠️ Quick Start
-
-### 1. Installation
-```bash
-git clone https://github.com/pramishmaharjan/Deterministic-Framework-for-LLM-Orchestration.git
-cd surgical-brain-os
-python scripts/setup_env.py
-```
-
-### 2. Configuration
-The framework is designed for zero-config startup. On the first run, the system will:
-1. Automatically create a local `config/` directory with sample routing and sovereign templates.
-2. Initialize a "Brain Root" (external data store) in your home directory or `D:/` drive (Windows).
-
-If you wish to use a custom location for your brain data, edit the generated `.env` file and define your `BRAIN_ROOT_PATH`.
-
-### 3. Run Proof of Concept
-```bash
-python examples/basic_routing.py
-```
-
 ## 📈 Expected Outcomes
 - **Token Reduction:** Up to 70% reduction in context overhead.
 - **Zero Hallucination:** Deterministic paths eliminate "creative" guesses.
 - **Absolute Consistency:** Sovereign alignment ensures identical output quality regardless of LLM temperature.
 
 ---
+
 *This repository provides the production-grade Architectural Skeleton. The high-precision routing weights and proprietary prompt kernels are omitted to preserve core intellectual property. For collaboration or full implementation, please contact the author.*
