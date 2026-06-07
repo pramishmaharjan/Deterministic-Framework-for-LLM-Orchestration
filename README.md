@@ -1,95 +1,74 @@
-# 🧠 Surgical Brain OS: A Deterministic Framework for LLM Orchestration
+# Deterministic Framework for LLM Orchestration (BrainOS v2.0)
 
-## 🌌 The Vision: From Probabilistic Prompting to Deterministic Routing
+## 🧠 The Vision: From Probabilistic to Deterministic
+Most LLM interactions are probabilistic—the model "guesses" the best path. **BrainOS** transforms this into a deterministic cognitive operating system. It treats the LLM as a high-level manager that routes requests through a surgically precise pipeline, ensuring that reasoning depth is always matched to task complexity.
 
-Most modern AI agents operate on **Probabilistic Prompting**. They "search" for information, "guess" the best tool, and "hope" the LLM follows the instructions. This leads to **Cognitive Drift**, **Token Bloat**, and **Hallucinations**.
+## 🏗️ The Architecture: The 4-Tier Escalation Ladder
+BrainOS doesn't use a "one size fits all" prompt. Every request is routed via the **Surgical Router** into one of four complexity tiers:
 
-**Surgical Brain OS** replaces "guessing" with **Routing**. 
+### L1: Surgical-Operational (Standard Effort)
+**Goal:** Instant, high-precision retrieval.
+**Path:** `User Request` $\rightarrow$ `Graphify` $\rightarrow$ `Surgical Read` $\rightarrow$ `Result`.
+**Use Case:** "What is the budget for Project X?"
 
-Instead of asking an LLM to "find the answer," this framework treats the AI's context window as **RAM** and the external knowledge base as a **Disk**. It uses a deterministic "Neural Map" to route the request through a precise chain of functional nodes, loading only the exact "pages" of memory required for the task.
+### L2: Functional Logic (Standard/High Effort)
+**Goal:** Understanding dependencies and cross-component relationships.
+**Path:** `User Request` $\rightarrow$ `Graphify BFS` $\rightarrow$ `Surgical Read` $\rightarrow$ `Sovereign State` $\rightarrow$ `Result`.
+**Use Case:** "How does the authentication flow affect the database schema?"
+
+### L3: Analytical Crunch (xhigh Effort)
+**Goal:** High-volume data transformation and structural analysis.
+**Path:** `User Request` $\rightarrow$ `LangStruct` $\rightarrow$ `Polars` $\rightarrow$ `DuckDB` $\rightarrow$ `dbt` $\rightarrow$ `Surgical Semantic Layer` $\rightarrow$ `Result`.
+**Use Case:** "Analyze the top 5 outliers in the performance dataset."
+
+### L4: Orchestrated Synthesis (Max Effort)
+**Goal:** Complex software engineering, architecture, and multi-step research.
+**Path:** `User Request` $\rightarrow$ `DeepAgent Manager` $\rightarrow$ `ruflo Swarm` $\rightarrow$ `LangGraph Cycle` (Reason $\rightarrow$ Rubric $\rightarrow$ Correct) $\rightarrow$ `Sovereign State` $\rightarrow$ `Surgical Semantic Layer` $\rightarrow$ `Result`.
+**Use Case:** "Refactor the entire API layer to support multi-tenancy."
 
 ---
 
-## 🚀 The Core Innovation: The 4-Tier Escalation Ladder
+## 🛠️ The Intelligence Stack
 
-To eliminate noise and maximize precision, every request is passed through the **Escalation Ladder**. The system only activates the minimum level of intelligence required:
+### 1. The Orchestration Layer (The Brain)
+*   **DeepAgents:** The central manager using **LangGraph** to maintain state and execute cyclic, self-correcting workflows.
+*   **ruflo:** An MCP-based swarm engine used to spawn and coordinate specialized agents for L4 tasks.
+*   **Surgical Router:** A deterministic triage engine that assigns the correct Effort Level to avoid token waste.
 
-### 🟢 L1: Surgical-Lite (Direct Execution)
-For trivial requests (e.g., "What is the current date?"). Direct execution with zero overhead.
+### 2. The Analytical Layer (The Muscle)
+*   **LangStruct & LangExtract:** High-precision, schema-based extraction with absolute source grounding.
+*   **Polars & DuckDB:** The high-performance data stack for transforming and querying structural knowledge.
+*   **dbt:** Ensuring data quality through tested SQL transformation pipelines.
 
-### 🟡 L2: Operational Index (Route Mapping)
-When the request is known but requires specific context. The system queries the `graph.json` (The Surgical Web) to find the deterministic path to the answer.
-
-### 🟠 L3: Functional Nodes (Targeted Execution)
-Once the route is found, the system activates specific **Surgical Nodes**. These are high-precision wrappers around tools like **Polars** (for cleaning), **sqlglot** (for transpilation), and **langextract** (for grounded extraction).
-
-### 🔴 L4: Orchestrated (Complex Synthesis)
-For high-complexity tasks. The system executes a multi-node pipeline and performs a final **Sovereign Alignment** check to ensure the output adheres to strict technical and ethical constraints.
+### 3. The Guardrail Layer (The Truth)
+*   **Sovereign State:** The root of trust. Every result is validated against project invariants to ensure zero-drift alignment.
+*   **Surgical Semantic Layer:** Translates technical extraction entities into business-facing definitions.
 
 ---
 
-## 🛠️ Setup & Installation
+## 🚀 Quick Start
 
-### 1. System Prerequisites
-Ensure the following are installed before proceeding:
-- [ ] **Python 3.10+** (Anaconda recommended)
-- [ ] **Ollama** (For local LLM execution)
-- [ ] **Obsidian** (For managing your Brain's memory and kernels)
-- [ ] **Claude Code CLI** (The primary interface for framework orchestration)
-- [ ] **Node.js** (Required for tool extensions)
-
-### 2. Deployment Options
-
-#### Option A: Via Claude Code (Recommended)
-If you are using the Claude Code CLI, you can initialize this framework by simply pasting the repository URL into the prompt:
-```bash
-# Example
-claude "https://github.com/pramishmaharjan/Deterministic-Framework-for-LLM-Orchestration"
-```
-Claude Code will analyze the structure, read this README, and can guide you through the setup steps automatically.
-
-#### Option B: Manual Installation
+### Installation
 ```bash
 # Clone the repository
 git clone https://github.com/pramishmaharjan/Deterministic-Framework-for-LLM-Orchestration.git
 cd Deterministic-Framework-for-LLM-Orchestration
 
-# Run the Auto-Provisioning Setup
-python scripts/setup_env.py
+# Setup the BrainOS Service
+pip install -r requirements.txt
+python scripts/setup_brain_os.py
 ```
 
-### 3. Zero-Config Auto-Provisioning
-The `scripts/setup_env.py` script is designed for a seamless "One-Click" experience. Upon execution, the system will:
-1. **Install Dependencies**: Automatically install all required libraries from `requirements.txt`.
-2. **Configure Environment**: Create a `.env` file from the template.
-3. **Provision the Brain**: Automatically detect and create the **Surgical Brain Root directory** (e.g., `C:/SurgicalBrain/Work` on Windows) and generate the entire required directory skeleton (`/nodes`, `/memory`, `/kernels`, `/weights`).
+### Usage
+The system is designed to be used as an MCP server. Once running, you can interact with the Brain via:
+*   `brain_route(request)`: To classify the complexity.
+*   `brain_execute(tier, request)`: To trigger the surgical pipeline.
 
-**You do not need to manually create any folders; the system builds its own infrastructure on first run.**
-
----
-
-## 🕸️ The Surgical Web & Knowledge Graphing
-
-Traditional RAG retrieves *documents*. The Surgical Web retrieves **Routes**.
-
-The heart of the system is a Knowledge Graph (`graph.json`). This graph ensures that if a task requires "Cleaning $\to$ Verification $\to$ Synthesis," the AI **cannot** skip a step or launder the data through an incorrect tool. It transforms the LLM from a "creative writer" into a "precision operator."
-
-## 🛡️ The Sovereign State: Zero-Drift Alignment
-
-The final gate of every L4 process is the **Sovereign State**. This is a set of immutable constraints (Technical, Ethical, and Stylistic). 
-
-No output is delivered to the user until the `SovereignValidator` confirms that the result:
-1. Matches the required technical dialect (e.g., Snowflake SQL).
-2. Adheres to the precision constraints (e.g., 2-decimal rounding).
-3. Maintains the professional "voice" of the architect.
+## 📊 Token ROI
+By shifting to a **Logarithmic Scaling** model, BrainOS achieves:
+*   **~90% Reduction** in input tokens via Surgical Reads.
+*   **Constant-time Context** via LangGraph DeltaChannels.
+*   **Reasoning Efficiency** by matching Effort Level $\rightarrow$ Complexity Tier.
 
 ---
-
-## 📈 Expected Outcomes
-- **Token Reduction:** Up to 70% reduction in context overhead.
-- **Zero Hallucination:** Deterministic paths eliminate "creative" guesses.
-- **Absolute Consistency:** Sovereign alignment ensures identical output quality regardless of LLM temperature.
-
----
-
-*This repository provides the production-grade Architectural Skeleton. The high-precision routing weights and proprietary prompt kernels are omitted to preserve core intellectual property. For collaboration or full implementation, please contact the author.*
+*Deterministic. Surgical. Sovereign.*

@@ -1,8 +1,13 @@
-# Required for the Surgical Brain OS Full Distribution
+# Required for the Surgical Brain OS v2.0 Distribution
 polars>=1.0.0
+duckdb>=1.1.0
+dbt-core
 sqlglot>=20.0.0
 sqlfluff>=3.0.0
 python-dotenv
 pathlib
 langgraph
 langchain-core
+deepagents>=0.6.8
+mcp
+fastmcp
