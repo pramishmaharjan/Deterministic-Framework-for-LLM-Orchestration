@@ -6,54 +6,68 @@ class RouteMissException(Exception):
     """Raised when the Router cannot find a valid path for the given query."""
     pass
 
+class LazyGraphLoader:
+    """Handles on-demand loading of the routing graph to minimize memory overhead."""
+    def __init__(self, path: Path):
+        self.path = path
+        self._graph = None
+
+    def get_graph(self) -> Dict:
+        if self._graph is None:
+            if self.path.exists():
+                with open(self.path, 'r') as f:
+                    self._graph = json.load(f)
+            else:
+                self._graph = {"routes": {}}
+        return self._graph
+
 class Router:
     """
     Deterministic Router implementing the 4-Tier Escalation Ladder.
-    L1: Surgical-Lite -> L2: Operational Index -> L3: Functional Nodes -> L4: Orchestrated.
+    L1: Surgical-Operational -> L2: Functional Nodes -> L3: Analytical -> L4: Orchestrated.
     """
     def __init__(self, graph_path: str = "config/graph.json"):
-        self.graph_path = Path(graph_path)
-        self.graph = self._load_graph()
-
-    def _load_graph(self) -> Dict:
-        if self.graph_path.exists():
-            with open(self.graph_path, 'r') as f:
-                return json.load(f)
-        return {"routes": {}}
+        self.graph_loader = LazyGraphLoader(Path(graph_path))
 
     def classify(self, query: str) -> str:
         query_lower = query.lower()
+        graph = self.graph_loader.get_graph()
+        routes = graph.get("routes", {})
 
         # 1. Check for dynamic domain matches from the graph
-        routes = self.graph.get("routes", {})
         for domain in routes.keys():
-            if domain != "L1" and domain != "L2" and domain != "L3" and domain != "L4":
-                # Normalize domain (replace underscores with spaces) for matching
+            if domain not in ["L1", "L2", "L3", "L4"]:
                 normalized_domain = domain.replace("_", " ").lower()
                 if normalized_domain in query_lower:
                     return domain
 
-        # 2. Fallback to the 4-Tier Escalation Ladder
-        if any(word in query_lower for word in ["what is", "define", "quick check"]):
+        # 2. Deterministic 4-Tier Escalation Ladder based on Brain OS
+        # L1: Surgical-Operational (Simple lookups, basic edits, metadata)
+        if any(word in query_lower for word in ["what is", "define", "quick check", "lookup", "metadata"]):
             return "L1"
-        if any(word in query_lower for word in ["find route", "map", "where is"]):
+
+        # L2: Functional Nodes (Targeted logic, index navigation, routing checks)
+        if any(word in query_lower for word in ["find route", "map", "where is", "navigate", "index"]):
             return "L2"
-        if any(word in query_lower for word in ["clean", "extract", "sql", "lint"]):
+
+        # L3: Analytical (Data transformation, extraction, SQL, linting, technical implementation)
+        if any(word in query_lower for word in ["clean", "extract", "sql", "lint", "transform", "pipeline"]):
             return "L3"
+
+        # L4: Orchestrated (High-complexity synthesis, swarm coordination, strategic planning)
         return "L4"
 
     def get_route(self, query: str) -> List[str]:
         tier = self.classify(query)
         print(f"[Router] Request classified as {tier}")
 
-        # Query the dynamic graph instead of hardcoded dict
-        routes = self.graph.get("routes", {})
+        graph = self.graph_loader.get_graph()
+        routes = graph.get("routes", {})
         route_data = routes.get(tier)
 
         if not route_data:
             raise RouteMissException(f"No route found for tier {tier}")
 
-        # Handle both simple list routes and extended sovereign route dicts
         if isinstance(route_data, dict):
             return route_data.get("path", [])
 

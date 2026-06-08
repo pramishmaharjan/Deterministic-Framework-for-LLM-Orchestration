@@ -1,5 +1,5 @@
 {
-    "version": "1.1",
+    "version": "1.2",
     "routes": {
         "L1": {
             "path": [
@@ -16,20 +16,18 @@
         },
         "L3": {
             "path": [
-                "ExtractionNode",
-                "CleaningNode",
-                "VerificationNode"
+                "LangStructNode",
+                "LangExtractNode"
             ],
-            "sovereign": false
+            "sovereign": true
         },
         "L4": {
             "path": [
-                "ExtractionNode",
-                "CleaningNode",
-                "VerificationNode",
+                "LangStructNode",
+                "LangExtractNode",
                 "SynthesisNode"
             ],
-            "sovereign": false
+            "sovereign": true
         },
         "quantum_physics": [
             "ExtractionNode",
@@ -37,5 +35,5 @@
             "VerificationNode"
         ]
     },
-    "description": "Deterministic mapping of request tiers to functional nodes."
+    "description": "Surgical Brain OS routing map. L3/L4 now enforce LangStruct -> LangExtract synergy."
 }

@@ -41,3 +41,17 @@ class IndexNode(BaseNode):
     def execute(self, input_data: Any, context: Dict[str, Any]) -> Any:
         print(f"[Node: Index] Mapping route via Surgical Web...")
         return f"L2 Routed Context for: {input_data}"
+
+
+class LangStructNode(BaseNode):
+    def execute(self, input_data: Any, context: Dict[str, Any]) -> Any:
+        sop = context.get("sop", "")
+        print(f"[Node: LangStruct] Structuring input via SOP ({len(sop)} chars)...")
+        return {"structured": input_data, "sop_applied": bool(sop)}
+
+
+class LangExtractNode(BaseNode):
+    def execute(self, input_data: Any, context: Dict[str, Any]) -> Any:
+        sop = context.get("sop", "")
+        print(f"[Node: LangExtract] Extracting via SOP ({len(sop)} chars)...")
+        return f"Extracted: {input_data}"
