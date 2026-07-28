@@ -70,5 +70,34 @@ By shifting to a **Logarithmic Scaling** model, BrainOS achieves:
 *   **Constant-time Context** via LangGraph DeltaChannels.
 *   **Reasoning Efficiency** by matching Effort Level $\rightarrow$ Complexity Tier.
 
+## 🚀 Claude Code Activation Guide
+
+To transform your Claude Code agent into a **Surgical Agent** powered by the BrainOS framework, follow these steps:
+
+### 1. Initialize the Persona
+Copy the persona template into your project's Claude configuration:
+```bash
+mkdir -p .claude
+cp poc/surgical-activation/.claude/CLAUDE.md.template .claude/CLAUDE.md
+```
+
+### 2. Setup the Knowledge Mirror
+Create the `surgical-brain/` directory to act as the agent's deterministic index:
+```bash
+mkdir -p surgical-brain/nodes
+cp poc/surgical-activation/surgical-brain/graph.json surgical-brain/
+cp poc/surgical-activation/surgical-brain/sovereign_state.md surgical-brain/
+cp poc/surgical-activation/surgical-brain/nodes/*.md surgical-brain/nodes/
+```
+
+### 3. Define Your Sovereign State
+Edit `surgical-brain/sovereign_state.md` to define your "North Star" rules (e.g., "All SQL must be Snowflake dialect," "All numbers must be rounded to 2 decimals," "No conversational filler").
+
+### 4. Boot the Agent
+Restart your Claude Code session. The agent will now boot into the **Surgical Agent** persona and begin utilizing the L1-L4 Escalation Ladder for all operations.
+
+**Verification:** Ask the agent: *"What is your current operational mode?"*
+**Surgical Response:** *"Surgical Agent. BrainOS active. L1-L4 routing engaged."*
+
 ---
-*Deterministic. Surgical. Sovereign.*
+

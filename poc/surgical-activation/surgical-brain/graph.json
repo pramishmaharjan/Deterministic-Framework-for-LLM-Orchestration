@@ -1,0 +1,28 @@
+{
+  "metadata": {
+    "name": "Surgical Brain PoC Graph",
+    "version": "1.0",
+    "description": "Minimal routing map for framework activation"
+  },
+  "nodes": {
+    "node_activation": {
+      "description": "Agent boot and persona activation",
+      "path": "surgical-brain/nodes/l1-direct.md",
+      "connections": ["node_operation_guide"]
+    },
+    "node_operation_guide": {
+      "description": "Operational handbook and L1-L4 routing logic",
+      "path": "poc/surgical-activation/docs/operational-handbook.md",
+      "connections": ["node_sovereign_gate"]
+    },
+    "node_sovereign_gate": {
+      "description": "Final output alignment and quality gate",
+      "path": "surgical-brain/sovereign_state.md",
+      "connections": []
+    }
+  },
+  "routes": {
+    "activation_flow": ["node_activation", "node_operation_guide", "node_sovereign_gate"],
+    "operational_query": ["node_operation_guide", "node_sovereign_gate"]
+  }
+}
